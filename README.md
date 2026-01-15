@@ -1,47 +1,51 @@
-# 🌍 Bayesian Spatial Energy Modeling
+# Bayesian Spatial Energy Modeling
 **National-scale Geostatistical Analysis of 3M+ Domestic Properties using INLA & Gaussian Random Fields.**
 
 ![Spatial Predictions Map](assests/spatial_predictions_map.png)
 
-## 🏛️ Academic Research Archive
-> **Note:** This repository hosts the Master's Dissertation submitted for the MSc in Data Science at Lancaster University (Distinction).
->
-> **Focus:** Advanced Bayesian Spatial Modeling (R-INLA) vs. Machine Learning (XGBoost) for predicting energy efficiency in the UK housing stock.
+## Academic Research Archive
+**Note:** This repository hosts the Master's Dissertation submitted for the MSc in Data Science at Lancaster University, which received a Distinction.
 
-## 🔬 The Problem: Spatial Autocorrelation
-Standard Machine Learning models (like Linear Regression or Random Forests) assume that data points are independent. In real estate and geography, this is false: **a house's energy efficiency is highly correlated with its neighbors.**
+**Research Focus:** This study compares advanced Bayesian Spatial Modeling techniques (specifically R-INLA) against industry-standard Machine Learning algorithms (XGBoost) for predicting Energy Performance Certificate (EPC) ratings across the UK housing stock.
 
-As visualized in the **Spatial Error Analysis** below, prediction errors are not random—they cluster geographically. Ignoring this "Spatial Autocorrelation" leads to biased predictions.
+## Challenge: Spatial Autocorrelation in Real Estate Data
+Standard Machine Learning models, such as Linear Regression or Random Forests, operate under the assumption that data points are Independent and Identically Distributed (I.I.D). In geospatial contexts, this assumption is fundamentally violated. A property's energy efficiency is often highly correlated with its neighbors due to shared construction periods, materials, and environmental factors.
+
+As visualized in the **Spatial Error Analysis** below, prediction errors from non-spatial models are not randomly distributed; they cluster geographically. Ignoring this "Spatial Autocorrelation" leads to biased predictions and unreliable confidence intervals.
 
 ![Spatial Error Analysis](assests/spatial_error_analysis.png)
 
-## 🛠️ Methodology
-I developed a **Besag-York-Mollié (BYM)** model using **Integrated Nested Laplace Approximation (INLA)** to capture both:
-1.  **Structured Spatial Effects:** How a neighborhood influences a specific house.
-2.  **Unstructured Noise:** Random variance inherent in the data.
+## Methodology
+To address these limitations, I developed a **Besag-York-Mollié (BYM)** model using **Integrated Nested Laplace Approximation (INLA)**. This approach decomposes the spatial field into two distinct components:
+1.  **Structured Spatial Effects:** Capturing the dependency between a specific location and its neighbors (Spatial Autocorrelation).
+2.  **Unstructured Noise:** Capturing the random variance inherent in the data (Heterogeneity).
 
-### Tech Stack
-- **Statistical Framework:** Bayesian Inference (R-INLA).
-- **Machine Learning Benchmark:** XGBoost (Gradient Boosting).
-- **Data Scale:** ~3 Million records (UK Energy Performance Certificates).
-- **Geospatial Tools:** GIS shapefiles (LSOA level), Variograms.
+Unlike Markov Chain Monte Carlo (MCMC) methods, which can be computationally prohibitive on large datasets, INLA allows for approximate Bayesian inference that scales efficiently to millions of data points.
 
-## 📊 Key Results & Impact
+### Technical Framework
+- **Statistical Inference:** Bayesian Inference via R-INLA package.
+- **Machine Learning Benchmark:** XGBoost (Gradient Boosting Trees) for feature importance analysis.
+- **Data Scale:** Approximately 3 million records of UK Energy Performance Certificates.
+- **Geospatial Tools:** GIS shapefiles (LSOA level aggregation), Variograms for spatial dependence testing.
 
-The Bayesian Spatial Model significantly outperformed the industry-standard Machine Learning approach by correctly modeling the geographic dependencies.
+## Key Results & Impact
+
+The study demonstrated that while XGBoost is effective at capturing non-linear relationships between building features, it fails to account for location-dependent variance. The Bayesian Spatial Model significantly outperformed the baseline by explicitly modeling these geographic dependencies.
 
 | Model Architecture | MSE (Mean Squared Error) | Verdict |
 | :--- | :--- | :--- |
-| **IID Model (Baseline)** | 1.20 | **Poor.** Ignores spatial context. |
-| **XGBoost (ML)** | 1.10 | **Good.** Captures non-linear feature relationships. |
-| **BYM Spatial Model (INLA)** | **0.78** | **Superior.** 29% Error reduction vs XGBoost. |
+| **IID Model (Baseline)** | 1.20 | **Poor.** Fails to capture spatial context. |
+| **XGBoost (ML)** | 1.10 | **Good.** Captures non-linear feature relationships effectively. |
+| **BYM Spatial Model (INLA)** | **0.78** | **Superior.** Achieved a 29% reduction in error compared to XGBoost. |
 
 ### Uncertainty Quantification
-Unlike XGBoost, which gives a single point prediction, the Bayesian approach provides **Posterior Probability Distributions**. This allows policymakers to see the *confidence interval* for every single region (as seen below), enabling better risk management.
+A critical advantage of the Bayesian approach over standard Machine Learning point predictions is the ability to generate **Posterior Probability Distributions**.
+
+This allows policymakers to view the full predictive distribution for any given region, providing a confidence interval that quantifies the risk and uncertainty associated with energy efficiency estimates.
 
 ![Posterior Distributions](assests/bayesian_posterior_distributions.png)
 
-## 📄 Read the Full Dissertation
-This document details the complete mathematical framework, rigorous feature selection, and residual analysis.
+## Read the Full Dissertation
+This document details the complete mathematical framework, rigorous feature selection process, and extensive residual analysis used to validate the models.
 
-[**Download Full Research Paper (PDF)**](Energy_Performance_Geostatistical_Approach.pdf)
+[**Download Full Research Paper (PDF)**](epc_prediction_dissertation_project.pdf)
