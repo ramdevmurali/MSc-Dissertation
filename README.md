@@ -1,9 +1,9 @@
-#  Bayesian Spatial Energy Modeling
+# 🌍 Bayesian Spatial Energy Modeling
 **National-scale Geostatistical Analysis of 3M+ Domestic Properties using INLA & Gaussian Random Fields.**
 
 ![Spatial Predictions Map](assests/spatial_predictions_map.png)
 
-## Academic Research Archive
+## 🏛️ Academic Research Archive
 > **Note:** This repository hosts the Master's Dissertation submitted for the MSc in Data Science at Lancaster University (Distinction).
 >
 > **Focus:** Advanced Bayesian Spatial Modeling (R-INLA) vs. Machine Learning (XGBoost) for predicting energy efficiency in the UK housing stock.
@@ -11,7 +11,9 @@
 ## 🔬 The Problem: Spatial Autocorrelation
 Standard Machine Learning models (like Linear Regression or Random Forests) assume that data points are independent. In real estate and geography, this is false: **a house's energy efficiency is highly correlated with its neighbors.**
 
-Ignoring this "Spatial Autocorrelation" leads to biased predictions and weak policy insights.
+As visualized in the **Spatial Error Analysis** below, prediction errors are not random—they cluster geographically. Ignoring this "Spatial Autocorrelation" leads to biased predictions.
+
+![Spatial Error Analysis](assests/spatial_error_analysis.png)
 
 ## 🛠️ Methodology
 I developed a **Besag-York-Mollié (BYM)** model using **Integrated Nested Laplace Approximation (INLA)** to capture both:
@@ -24,7 +26,7 @@ I developed a **Besag-York-Mollié (BYM)** model using **Integrated Nested Lapla
 - **Data Scale:** ~3 Million records (UK Energy Performance Certificates).
 - **Geospatial Tools:** GIS shapefiles (LSOA level), Variograms.
 
-##  Key Results & Impact
+## 📊 Key Results & Impact
 
 The Bayesian Spatial Model significantly outperformed the industry-standard Machine Learning approach by correctly modeling the geographic dependencies.
 
@@ -39,7 +41,7 @@ Unlike XGBoost, which gives a single point prediction, the Bayesian approach pro
 
 ![Posterior Distributions](assests/bayesian_posterior_distributions.png)
 
-##  Read the Full Dissertation
+## 📄 Read the Full Dissertation
 This document details the complete mathematical framework, rigorous feature selection, and residual analysis.
 
 [**Download Full Research Paper (PDF)**](Energy_Performance_Geostatistical_Approach.pdf)
