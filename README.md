@@ -1,7 +1,7 @@
 # Bayesian Spatial Energy Modeling
 **National-scale Geostatistical Analysis of 3M+ Domestic Properties using INLA & Gaussian Random Fields.**
 
-![Spatial Predictions Map](assests/ spatial_predictions_map.png)
+![Spatial Predictions Map](assests/spatial_predictions_map.png)
 
 ## Academic Research Archive
 **Note:** This repository hosts the Master's Dissertation submitted for the MSc in Data Science at Lancaster University, which received a Distinction.
